@@ -89,6 +89,7 @@ const argv = require('yargs')
 
 const browser = await puppeteer.launch({
   // headless: false,
+  ignoreHTTPSErrors: true,
   defaultViewport: DEFAULT_VIEWPORT,
 });
 
@@ -288,38 +289,36 @@ await page.setContent(`
       </head>
       <body>
         <header>
-          <h1>Do your lazy loaded images work in search crawlers?</h1>
-          <p>The two screenshots below should look more or less the same.
-          If there are missing images in the left screenshot, it's likely they
-          are being lazy loaded using scroll events. This can present a problem
-          for search engines which often do not run JavaScript, and therefore,
-          do not run scroll handlers. Images need to be fully loaded when they're
-          "in the viewport", without scrolling the page. Instead of scroll events,
-          use a more modern approach like
-          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver</a> with a
-          <a href="https://github.com/w3c/IntersectionObserver/tree/master/polyfill">polyfill</a>.
-          If you're using library for lazy loading, find one that doesn't use scroll events.</p>
+          <h1>遅延読み込みされた画像は検索クローラーで動作しますか？</h1>
+          <p>以下の2つのスクリーンショットは、ほぼ同じように見えるはずです。
+          左のスクリーンショットに画像が欠けている場合は、おそらく
+          スクロールイベントを使用して遅延ロードされています。これは問題を引き起こす可能性があります。
+          JavaScriptを実行しないことが多い検索エンジンの場合、
+          スクロールハンドラを実行しないでください。画像は検索クローラーから完全に読み込まれる必要があります。
+          スクロールイベントの代わりに、ViewPortを使用するより現代的なアプローチを使用してください。
+          遅延読み込みにライブラリを使用している場合は、
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver</a>と<a href="https://github.com/w3c/IntersectionObserver/tree/master/polyfill">polyfill</a>などのスクロールイベントを使用しないライブラリを使用してください。</p>
         </header>
         <h2 class="check">Site result: <span class="${passed ? 'passed' : 'failed'}">${passed ? 'PASSED' : 'FAILED'}</span></h2>
         <div class="url"><a href="${argv.url}">${argv.url}</a></div>
         <section>
           <div>
-            <h2>Page without being scrolled</h2>
-            <p class="summary">This is how the lazy loaded images on your page appear to a search engine.
-            Does it look right? If images are missing, they might be lazy loaded
-            using scroll events.</p>
+            <h2>スクロールされないページ</h2>
+            <p class="summary">これは、ページに遅延ロードされた画像が検索エンジンに表示される方法です。
+            正しく見えますか？画像が欠落している場合、それらはスクロールイベントを使用し遅延ロードされる可能性があります。
+            </p>
             <img src="data:img/png;base64,${screenshotA.toString('base64')}" class="screenshot">
           </div>
           <div>
             <h2>&nbsp;</h2>
-            <p class="summary">( difference between two screenshots )</p>
+            <p class="summary">( 2つのスクリーンショットの違い )</p>
             <img src="data:img/png;base64,${diffBuffer.toString('base64')}" class="screenshot">
           </div>
           <div>
-            <h2>Page after scrolling</h2>
-            <p class="summary">If there are more images in the screenshot below,
-            the page is using scroll events to lazy load images. Instead, consider using another approach like
-            IntersectionObserver.</p>
+            <h2>スクロール後のページ</h2>
+            <p class="summary">下のスクリーンショットにさらに画像がある場合は、
+            ページはスクロールイベントを使用して画像を遅延読み込みしています。代わりにIntersectionObserverなどを使用した、別のアプローチの使用を検討してください。
+            </p>
             <img src="data:img/png;base64,${screenshotB.toString('base64')}" class="screenshot">
           </div>
         </section>
