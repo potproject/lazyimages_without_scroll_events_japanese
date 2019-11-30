@@ -28,6 +28,6 @@ node lazyimages_without_scroll_events.js -u https://blog.potproject.net
 
 ## License
 
-[Apache 2.0](./LICENSE) © 2018 Google Inc.
+[Apache 2.0](./LICENSE) 2018 Google Inc.
 
 [Apache 2.0](./LICENSE) 2019 potproject.
