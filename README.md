@@ -10,7 +10,7 @@
 
 <img width="500" alt="screen shot 2018-10-09 at 12 15 10 pm" src="https://user-images.githubusercontent.com/238208/46697053-98aa5e80-cbc8-11e8-91c3-d5cf7937f3f7.png">
 
-詳しくは[遅延読み込みコンテンツを Google が認識できるようにする#テスト](https://developers.google.com/search/docs/guides/lazy-loading#test)をご覧ください。
+詳しくは[遅延読み込みコンテンツを Google が認識できるようにする](https://developers.google.com/search/docs/guides/lazy-loading)をご覧ください。
 
 ## Getting Starter
 ```sh
